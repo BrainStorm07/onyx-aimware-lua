@@ -47,7 +47,6 @@ gui.Button(OnyxInviteGroupbox, "Refresh nearbies", function()
 end)
 
 gui.Button(OnyxInviteGroupbox, "Mass invite nearbies", function()
-	print("Run Mass Invite")
     panorama.RunScript([[
         collectedSteamIDS.forEach(xuid => {
             FriendsListAPI.ActionInviteFriend(xuid, "");
