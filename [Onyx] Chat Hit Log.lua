@@ -1,5 +1,6 @@
 --[Onyx] Chat Hit Log.lua by OurmineOGTv#6846
 --Unofficial AIMWARE Discord Server: https://discord.com/invite/5eH69PF
+--https://wiki.alliedmods.net/Counter-Strike:_Global_Offensive_Events
 
 local OnyxRef = gui.Reference("Misc", "General", "Logs")
 local OnyxMasterSwitch = gui.Checkbox(OnyxRef, "master.switch", "Hit Log Master Switch", false)
@@ -64,17 +65,17 @@ local function checkWhoHit(event)
 
 		if (iVictim == mUser and iAttacker ~= mUser) then
 			attacker = nAttacker
+			if part == 0 then elseif part == 1 or part == 2 or part == 3 or part == 4 or part == 5 or part == 6 or part == 7 then 
+				if OnyxMasterSwitch:GetValue() then
+					if OnyxActivateConsoleLog:GetValue() then
+						consoleMessage(attacker, part, DMG);
+					end
+					if OnyxActivateGlobalSay:GetValue() then
+						globalMessage(attacker, part, DMG);
+					end
+				end
+			else end
 		end
-		if part == 0 then elseif part == 1 or part == 2 or part == 3 or part == 4 or part == 5 or part == 6 or part == 7 then 
-			if OnyxMasterSwitch:GetValue() then
-				if OnyxActivateConsoleLog:GetValue() then
-					consoleMessage(attacker, part, DMG);
-				end
-				if OnyxActivateGlobalSay:GetValue() then
-					globalMessage(attacker, part, DMG);
-				end
-			end
-		else end
 	end
 end
 client.AllowListener('player_hurt');
